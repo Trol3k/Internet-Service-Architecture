@@ -1,0 +1,25 @@
+### Get all restaurants
+
+GET http://localhost:8081/api/restaurants
+
+### Get single restaurant
+
+GET http://localhost:8081/api/restaurants/35108afd-1c5e-46b4-ae21-7ff2a0fd76fc
+
+### Create new restaurant
+
+PUT http://localhost:8081/api/restaurants/3c6f1eb1-8069-44ab-988f-d7fed2b65d73
+Content-Type: application/json
+
+{
+  "name": "Pizza Napoli Gdansk",
+  "location": "Generała Augusta Emila Fieldorfa 2, Gdansk 80-041 Poland"
+}
+
+### Get single restaurant, not existing
+
+GET http://localhost:8081/api/restaurants/ac4e2683-b2ba-4695-94d9-806a97fce71e
+
+### Delete restaurant
+
+DELETE http://localhost:8081/api/restaurants/35108afd-1c5e-46b4-ae21-7ff2a0fd76fc

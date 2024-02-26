@@ -1,0 +1,77 @@
+### Get all pizzas
+
+GET http://localhost:8083/api/pizzas
+
+### Get single pizza
+
+GET http://localhost:8083/api/pizzas/8cf7fa5c-9c19-40d2-8ccc-676784452af2
+
+### Get single pizza, not existing
+
+GET http://localhost:8083/api/pizzas/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+
+### Get restaurant pizzas
+
+GET http://localhost:8083/api/restaurants/35108afd-1c5e-46b4-ae21-7ff2a0fd76fc/pizzas
+
+### Get restaurant pizzas, not existing
+
+GET http://localhost:8083/api/restaurants/ac4e2683-b2ba-4695-94d9-806a97fce71e/pizzas
+
+### Create new pizza
+
+PUT http://localhost:8083/api/pizzas/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+Content-Type: application/json
+
+{
+  "name": "Diavola",
+  "diameter": 31,
+  "cost": 32,
+  "restaurant": "35108afd-1c5e-46b4-ae21-7ff2a0fd76fc"
+}
+
+### Add pizza to not exisitng restaurant
+
+PUT http://localhost:8083/api/pizzas/3c6f1eb1-8069-44ab-988f-d7fed2b65d92
+Content-Type: application/json
+
+{
+  "name": "Pepperoni",
+  "diameter": 32,
+  "cost": 35,
+  "restaurant": "ac4e2683-b2ba-4695-94d9-806a97fce71e"
+}
+
+### Delete pizza.
+
+DELETE http://localhost:8083/api/pizzas/3c6f1eb1-8069-44ab-988f-d7fed2b65d87
+
+### Get all restaurants
+
+GET http://localhost:8083/api/restaurants
+
+### Get single restaurant
+
+GET http://localhost:8083/api/restaurants/35108afd-1c5e-46b4-ae21-7ff2a0fd76fc
+
+### Create new restaurant
+
+PUT http://localhost:8083/api/restaurants/3c6f1eb1-8069-44ab-988f-d7fed2b65d73
+Content-Type: application/json
+
+{
+  "name": "Pizza Napoli Gdansk",
+  "place": "Generała Augusta Emila Fieldorfa 2, Gdansk 80-041 Poland"
+}
+
+### Get single empty restaurant
+
+GET http://localhost:8083/api/restaurants/3c6f1eb1-8069-44ab-988f-d7fed2b65d73/pizzas
+
+### Get single restaurant, not existing
+
+GET http://localhost:8083/api/restaurants/ac4e2683-b2ba-4695-94d9-806a97fce71e
+
+### Delete restaurant
+
+DELETE http://localhost:8083/api/restaurants/35108afd-1c5e-46b4-ae21-7ff2a0fd76fc

@@ -1,0 +1,77 @@
+version: '3'
+
+services:
+  config:
+    image: config
+    restart: always
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
+    volumes:
+      - "./configuration:/var/config/configuration"
+
+  eureka:
+    image: eureka
+    restart: always
+    ports:
+      - "8090:8080"
+
+  pizza-db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: "pizza_db"
+      POSTGRES_USER: "pizza_user"
+      POSTGRES_PASSWORD: "pizza_password"
+    volumes:
+      - pizza-db-data:/var/lib/postgresql/data
+
+  restaurant-db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: "restaurant_db"
+      POSTGRES_USER: "restaurant_user"
+      POSTGRES_PASSWORD: "restaurant_password"
+    volumes:
+      - restaurant-db-data:/var/lib/postgresql/data
+
+  pizza-1:
+    image: pizza
+    restart: always
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://config:8080"
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
+
+  pizza-2:
+    image: pizza
+    restart: always
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://config:8080"
+      EUREKA_INSTANCE_INSTANCE_ID: "2"
+
+  restaurant:
+    image: restaurant
+    restart: always
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://config:8080"
+
+  gateway:
+    image: gateway
+    restart: always
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://config:8080"
+      AUI_GATEWAY_HOST: "gateway:8080"
+    ports:
+      - "8070:8080"
+
+  angular:
+    image: angular
+    restart: always
+    environment:
+      API_URL: http://gateway:8080/api
+    ports:
+      - "8080:80"
+
+volumes:
+  pizza-db-data:
+  restaurant-db-data:
