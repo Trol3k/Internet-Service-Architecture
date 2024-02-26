@@ -1,0 +1,25 @@
+<div class="container" *ngIf="restaurants">
+  <header><h2>Restaurants</h2></header>
+
+  <ul class="responsive-table" *ngIf="restaurants">
+    <li class="table-header">
+      <div class="col col-1">Name</div>
+      <div class="col col-2">View</div>
+      <div class="col col-3">Edit</div>
+      <div class="col col-4">Delete</div>
+    </li>
+    <li class="table-row" *ngFor="let restaurant of restaurants.restaurants">
+      <div class="col col-1">{{restaurant.name}}</div>
+      <div class="col col-2">
+        <a [routerLink]="['/restaurants', restaurant.id]">View</a>
+      </div>
+      <div class="col col-3">
+        <a [routerLink]="['/restaurants', restaurant.id, 'edit']">Edit</a>
+      </div>
+      <div class="col col-4">
+        <button (click)="onDelete(restaurant)">Delete</button>
+      </div>
+    </li>
+  </ul>
+  <button [routerLink]="['/restaurants/add']">Add new restaurant</button>
+</div>

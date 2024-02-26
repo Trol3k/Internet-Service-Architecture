@@ -1,0 +1,22 @@
+<article *ngIf="pizza">
+    <header><h2>Add pizza</h2></header>
+
+    <form class="container" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Name:</label>
+            <input id="name" name="name" [(ngModel)]="pizza.name"/>
+        </div>
+        <div>
+            <label for="diameter">Diameter:</label>
+            <input id="diameter" name="diameter" [(ngModel)]="pizza.diameter"/>
+        </div>
+        <div>
+            <label for="cost">Cost:</label>
+            <input id="cost" name="cost" [(ngModel)]="pizza.cost"/>
+        </div>
+
+        <div>
+            <button type="submit">Add</button>
+        </div>
+    </form>
+</article>
